@@ -43,8 +43,7 @@ public class CheckoutService {
         System.out.println(Status);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDateTime current = LocalDateTime.now();
-//        Date date = new Date(System.currentTimeMillis());
-        if(!Status.equals("Paid")){
+        if(Status.equals("Paid")){
             System.out.println(cartApi.getCartDetailsByID(cartid));
            Cart cart = cartApi.getCartDetailsByID(cartid);
            cartApi.deleteItemFromCart(cartid);
@@ -60,8 +59,9 @@ public class CheckoutService {
             c.setTotalamount(cart.getPrice());
             c.setShippingaddress("Gaha Nagar, Mumbai 500069");
             c.setPaymentstatus(Status);
-            System.out.println("ky");
-           orderRepository.save(c);
+            System.out.println(c);
+           orderRepository.SaveSelected( c.getUserid(), c.getOrderdate(),c.getTotalamount(), c.getShippingaddress(),c.getPaymentstatus(), c.getDeliverystatus());
+            System.out.println(c);
            return c;
         }
         else{

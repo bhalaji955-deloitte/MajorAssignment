@@ -6,11 +6,13 @@ import java.util.Random;
 
 @Service
 public class PaymentService {
+    Random random = new Random();
+    boolean b = random.nextBoolean();
+
     public String pay() {
-        double num= Math.random();
-        if(num%2 == 0){
+        System.out.println(b);
+        if(b)
             return "Paid";
-        }
-        return "Unpaid";
+    return "Unpaid";
     }
 }
